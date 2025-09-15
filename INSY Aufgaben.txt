@@ -17,3 +17,5 @@
 9) select ENAME from emps where ENAME LIKE '__a%';
 
 10) select id, ENAME, JOB from emps where COMM is not null;
+
+11) select * from emps ORDER BY COMM;
