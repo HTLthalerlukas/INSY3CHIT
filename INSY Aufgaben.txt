@@ -15,3 +15,5 @@
 8) select * from emps where JOB != 'PRESIDENT' or JOB != 'MANAGER';
 
 9) select ENAME from emps where ENAME LIKE '__a%';
+
+10) select id, ENAME, JOB from emps where COMM is not null;
