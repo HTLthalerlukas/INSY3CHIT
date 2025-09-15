@@ -5,3 +5,5 @@
 3) select ENAME, JOB, SAL from emps;
 
 4) select * from emps where dept_id != 10;
+
+5) select * from emps where COMM > SAL;
