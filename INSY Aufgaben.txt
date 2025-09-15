@@ -7,3 +7,5 @@
 4) select * from emps where dept_id != 10;
 
 5) select * from emps where COMM > SAL;
+
+6) select * from emps where HIREDATE = '1981-12-03';
