@@ -11,3 +11,5 @@
 6) select * from emps where HIREDATE = '1981-12-03';
 
 7) select ENAME, SAL from emps where SAL<1250 or SAL>1600;
+
+8) select * from emps where JOB != 'PRESIDENT' or JOB != 'MANAGER';
