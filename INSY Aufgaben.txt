@@ -55,3 +55,5 @@
 26) select ENAME, JOB, COMM from emps where COMM >= SAL/4;
 
 27) select MIN(SAL+COMM) from emps;
+
+28) select MIN(HIREDATE) from emps;
