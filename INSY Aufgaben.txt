@@ -53,3 +53,5 @@
 25) select * from emps where JOB = 'MANAGER' OR JOB = 'PRESIDENT';
 
 26) select ENAME, JOB, COMM from emps where COMM >= SAL/4;
+
+27) select MIN(SAL+COMM) from emps;
