@@ -21,3 +21,5 @@
 11) select * from emps ORDER BY COMM;
 
 12) select * from emps where JOB not in ('PRESIDENT', 'MANAGER') order by dept_id ASC, HIREDATE DESC;
+
+13) select ENAME from emps where LENGTH(ENAME) = 6;
