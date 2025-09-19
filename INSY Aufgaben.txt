@@ -45,3 +45,6 @@
     Es liefert Unterschiedliche Ergebnisse, da bei einem die einzigartigen ids ausgegeben und beim anderen die Anzahl der unterschiedlichen ids
 
 22) select SUM(SAL), SUM(COMM), COUNT(SAL), COUNT(COMM), AVG(SAL), AVG(COMM) from emps where dept_id = 30;
+
+23) select COUNT(DISTINCT JOB) AS uniqueJobs from emps where JOB not like 'MANAGER' AND JOB not like 'PRESIDENT';
+
