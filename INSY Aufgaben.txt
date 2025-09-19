@@ -19,3 +19,5 @@
 10) select id, ENAME, JOB from emps where COMM is not null;
 
 11) select * from emps ORDER BY COMM;
+
+12) select * from emps where JOB not in ('PRESIDENT', 'MANAGER') order by dept_id ASC, HIREDATE DESC;
