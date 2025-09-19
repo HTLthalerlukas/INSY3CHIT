@@ -35,3 +35,5 @@
 17) select SUM(SAL) AS 'Gesamtbetrag' from emps;
 
 18) select AVG(COMM + IFNULL(COMM, '250')) from emps;
+
+19) select COUNT(SAL) AS anzahl_Gehalt, COUNT(COMM) AS anzahl_Provision from emps where dept_id = 30;
