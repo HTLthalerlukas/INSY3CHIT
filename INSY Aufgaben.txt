@@ -49,3 +49,5 @@
 23) select COUNT(DISTINCT JOB) AS uniqueJobs from emps where JOB not like 'MANAGER' AND JOB not like 'PRESIDENT';
 
 24) select COUNT(*)/COUNT(DISTINCT dept_id) from emps;
+
+25) select * from emps where JOB = 'MANAGER' OR JOB = 'PRESIDENT';
