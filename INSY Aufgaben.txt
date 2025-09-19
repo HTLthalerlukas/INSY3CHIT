@@ -44,3 +44,4 @@
     select COUNT(DISTINCT parent_id) from emps;
     Es liefert Unterschiedliche Ergebnisse, da bei einem die einzigartigen ids ausgegeben und beim anderen die Anzahl der unterschiedlichen ids
 
+22) select SUM(SAL), SUM(COMM), COUNT(SAL), COUNT(COMM), AVG(SAL), AVG(COMM) from emps where dept_id = 30;
