@@ -29,3 +29,5 @@
 15) select SAL, COMM from emps;
     select sal, IFNULL(COMM, 0) from emps;
     Der Unterschied ist, dass bei IFNULL(COMM, 0) statt "NULL", "0" bei COMM steht
+
+16) select ENAME, SAL AS MONTHLY, SAL / 22 AS DAILY, (SAL / 22) / 8 AS HOURLY from emps;
