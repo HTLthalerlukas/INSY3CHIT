@@ -33,3 +33,5 @@
 16) select ENAME, SAL AS MONTHLY, SAL / 22 AS DAILY, (SAL / 22) / 8 AS HOURLY from emps;
 
 17) select SUM(SAL) AS 'Gesamtbetrag' from emps;
+
+18) select AVG(COMM + IFNULL(COMM, '250')) from emps;
