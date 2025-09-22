@@ -61,3 +61,10 @@
 29) select JOB, COUNT(ID) AS anzahl_personen, dept_id from emps GROUP BY dept_id, JOB ORDER BY dept_id, JOB;
 
 30) select MAX(SAL), MIN(SAL), dept_id from emps GROUP BY dept_id ORDER BY dept_id;
+
+31) COMM = 0 != COMM IS NULL, bei COMM = 0 gibt es eine COMM, wessen betrag 0 ist, bei IS NULL gibt es keinen Wert;
+
+32) COUNT(*) gibt alle Werte aus, COUNT(parent_id) gibt IS NULL nicht aus, COUNT(DISTINCT parent_id) gibt nur einzigartige parent_id's aus
+
+33) COUNT(), SUM(), AVG(), MIN(), MAX()
+
