@@ -57,3 +57,5 @@
 27) select MIN(SAL+COMM) from emps;
 
 28) select MIN(HIREDATE) from emps;
+
+29) select JOB, COUNT(ID) AS anzahl_personen, dept_id from emps GROUP BY dept_id, JOB ORDER BY dept_id, JOB;
