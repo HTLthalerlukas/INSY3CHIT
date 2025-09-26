@@ -12,7 +12,7 @@
 
 7) select ENAME, SAL from emps where SAL<1250 or SAL>1600;
 
-8) select * from emps where JOB != 'PRESIDENT' or JOB != 'MANAGER';
+8) select * from emps where JOB != 'PRESIDENT' and JOB != 'MANAGER';
 
 9) select ENAME from emps where ENAME LIKE '__a%';
 
