@@ -80,3 +80,5 @@
 
 39) geht nicht in MYSQL
 
+40) select AVG(SAL) as average_sal from emps GROUP BY JOB HAVING AVG(SAL)>1500 ORDER BY AVG(SAL);
+
