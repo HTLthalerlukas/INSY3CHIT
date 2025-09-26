@@ -77,3 +77,6 @@
 37) select AVG(DISTINCT SAL) from emps where COMM = 0 OR COMM IS NULL GROUP BY JOB ORDER BY JOB;
 
 38) select SUM((CASE when COMM = 0 OR COMM IS NULL then SAL+100 else SAL end)*12) from emps where COMM = 0 OR COMM IS NULL;
+
+39) geht nicht in MYSQL
+
