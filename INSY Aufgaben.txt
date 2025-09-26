@@ -71,3 +71,5 @@
 34) select MIN(SAL), MIN(COMM), MAX(SAL), MAX(COMM), AVG(SAL), AVG(COMM), COUNT(SAL), COUNT(COMM) from emps where dept_id = 30;
 
 35) select MIN(SAL), MAX(SAL), AVG(SAL) from emps GROUP BY dept_id ORDER BY dept_id;
+
+36) select MIN(SAL), MAX(SAL), AVG(SAL), COUNT(id) from emps where JOB NOT LIKE 'MANAGER' AND JOB NOT LIKE 'PRESIDENT' GROUP BY dept_id ORDER BY dept_id;
