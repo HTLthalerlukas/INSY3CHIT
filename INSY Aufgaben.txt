@@ -92,3 +92,5 @@
 44) WHERE wird vor HAVING ausgewertet
 
 45) WHERE filtert bevor gruppiert wird
+
+46) select ENAME from emps where SAL > (select SAL from emps where ENAME = 'JONES') GROUP BY ENAME;
