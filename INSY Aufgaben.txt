@@ -88,3 +88,5 @@
 	HAVING: Filtert nach dem Gruppieren
 
 43) select JOB from emps GROUP BY JOB HAVING AVG(SAL) > 1500 ORDER BY JOB;
+
+44) WHERE wird vor HAVING ausgewertet
