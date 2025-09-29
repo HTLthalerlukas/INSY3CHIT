@@ -84,3 +84,5 @@
 
 41) select dept_id from emps where JOB = 'CLERK' GROUP BY dept_id HAVING COUNT(*) >= 2;
 
+42) 	WHERE: Filtert vor dem Gruppieren
+	HAVING: Filtert nach dem Gruppieren
