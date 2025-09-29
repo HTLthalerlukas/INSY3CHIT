@@ -82,3 +82,5 @@
 
 40) select AVG(SAL) as average_sal from emps GROUP BY JOB HAVING AVG(SAL)>1500 ORDER BY AVG(SAL);
 
+41) select dept_id from emps where JOB = 'CLERK' GROUP BY dept_id HAVING COUNT(*) >= 2;
+
