@@ -94,3 +94,5 @@
 45) WHERE filtert bevor gruppiert wird
 
 46) select ENAME from emps where SAL > (select SAL from emps where ENAME = 'JONES') GROUP BY ENAME;
+
+47) select e.ENAME, e.SAL, (select ENAME from emps where id = e.parent_id) as Vorgesetzter from emps e where SAL>(select SAL from emps where id = e.parent_id);
