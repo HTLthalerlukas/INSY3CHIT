@@ -100,3 +100,5 @@
 48) select  ENAME from emps where SAL<((select SAL from emps where JOB = 'PRESIDENT')*0.3);
 
 49) select DNAME e from depts e where (select count(*) from emps where dept_id=e.DEPTNO) = 0;
+
+50) select ENAME from emps where JOB = (select JOB from emps where ENAME = 'JONES');
