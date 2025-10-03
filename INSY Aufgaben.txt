@@ -98,3 +98,5 @@
 47) select e.ENAME, e.SAL, (select ENAME from emps where id = e.parent_id) as Vorgesetzter from emps e where SAL>(select SAL from emps where id = e.parent_id);
 
 48) select  ENAME from emps where SAL<((select SAL from emps where JOB = 'PRESIDENT')*0.3);
+
+49) select DNAME e from depts e where (select count(*) from emps where dept_id=e.DEPTNO) = 0;
