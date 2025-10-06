@@ -114,3 +114,5 @@
 55) select ENAME from emps where dept_id = (select DEPTNO from depts where LOC = 'CHICAGO') GROUP BY ENAME, JOB HAVING JOB = (select JOB from emps where ENAME = 'ALLEN') ORDER BY ENAME;
 
 56) select JOB from emps GROUP BY JOB HAVING AVG(SAL)>(select AVG(SAL) from emps where JOB = 'SALESMAN');
+
+57) select ENAME, JOB from emps where dept_id = 10 AND JOB IN (select JOB from emps where dept_id = 30);
