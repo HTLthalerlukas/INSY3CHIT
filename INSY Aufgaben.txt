@@ -116,3 +116,5 @@
 56) select JOB from emps GROUP BY JOB HAVING AVG(SAL)>(select AVG(SAL) from emps where JOB = 'SALESMAN');
 
 57) select ENAME, JOB from emps where dept_id = 10 AND JOB IN (select JOB from emps where dept_id = 30);
+
+58) select ENAME, JOB from emps where dept_id = 10 AND JOB NOT IN (select JOB from emps where dept_id = 30);
