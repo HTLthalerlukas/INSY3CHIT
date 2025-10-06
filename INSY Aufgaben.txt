@@ -104,3 +104,5 @@
 50) select ENAME from emps where JOB = (select JOB from emps where ENAME = 'JONES');
 
 51) select ENAME, JOB, SAL from emps where SAL = (select MAX(SAL) from emps);
+
+52) select ENAME from emps where LENGTH(ENAME) = (select MAX(LENGTH(ENAME)) from emps);
