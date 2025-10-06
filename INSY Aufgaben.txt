@@ -107,4 +107,4 @@
 
 52) select ENAME from emps where LENGTH(ENAME) = (select MAX(LENGTH(ENAME)) from emps);
 
-53) select COUNT(*) from emps where dept_id = 10;
+53) select COUNT(*) from emps where dept_id = (select DEPTNO from depts where LOC = 'NEW YORK');
