@@ -106,3 +106,5 @@
 51) select ENAME, JOB, SAL from emps where SAL = (select MAX(SAL) from emps);
 
 52) select ENAME from emps where LENGTH(ENAME) = (select MAX(LENGTH(ENAME)) from emps);
+
+53) select COUNT(*) from emps where dept_id = 10;
