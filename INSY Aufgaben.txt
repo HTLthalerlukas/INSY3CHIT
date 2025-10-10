@@ -120,3 +120,5 @@
 58) select ENAME, JOB from emps where dept_id = 10 AND JOB NOT IN (select JOB from emps where dept_id = 30);
 
 59) select ENAME, JOB from emps where  JOB IN (select JOB from emps where dept_id = (select DEPTNO from depts where DNAME = 'SALES'));
+
+60) select e.* from emps e where HIREDATE = (select MAX(HIREDATE) from emps where dept_id = e.dept_id) ORDER BY dept_id;
