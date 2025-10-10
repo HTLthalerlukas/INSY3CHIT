@@ -122,3 +122,5 @@
 59) select ENAME, JOB from emps where  JOB IN (select JOB from emps where dept_id = (select DEPTNO from depts where DNAME = 'SALES'));
 
 60) select e.* from emps e where HIREDATE = (select MAX(HIREDATE) from emps where dept_id = e.dept_id) ORDER BY dept_id;
+
+61) select DEPTNO from depts where DEPTNO IN (select dept_id from emps);
