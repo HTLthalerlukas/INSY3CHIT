@@ -128,3 +128,6 @@
 62) select DEPT_ID, ENAME, SAL from emps where SAL > (select AVG(SAL) from emps) ORDER BY dept_id;
 
 63) select DNAME, DEPTNO from depts where 4 <= (select count(dept_id) from emps where dept_id = DEPTNO);
+
+64) select e.ENAME from emps e join (select dept_id, AVG(SAL) as AVGSAL from emps group by dept_id) a on e.dept_id=a.dept_id where e.SAL*1.1>=a.AVGSAL or e.SAL*0.9<=a.AVGSAL;
+
