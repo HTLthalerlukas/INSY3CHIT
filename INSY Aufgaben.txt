@@ -131,3 +131,4 @@
 
 64) select e.ENAME from emps e join (select dept_id, AVG(SAL) as AVGSAL from emps group by dept_id) a on e.dept_id=a.dept_id where e.SAL*1.1>=a.AVGSAL or e.SAL*0.9<=a.AVGSAL;
 
+65) SELECT e.ENAME, d.DNAME FROM emps e JOIN depts d ON e.dept_id = d.DEPTNO WHERE d.LOC = 'CHICAGO';
