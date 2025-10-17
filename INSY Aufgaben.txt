@@ -136,3 +136,5 @@
 66) select e.JOB, e.dept_id from emps e where SAL = (select MAX(d.SAL) from emps d where d.JOB = e.JOB);
 
 67) select distinct e.JOB, e.dept_id from emps e where SAL = (select MAX(d.SAL) from emps d where d.JOB = e.JOB);
+
+68) select e.ENAME as Person, e.SAL as Gehalt, o.ENAME as Vergleich, o.SAL as Gehalt_des_Anderen,(o.SAL - e.SAL)/o.SAL*100 as Prozentunterschied from emps e join (select ENAME, SAL from emps) o on o.SAL>=e.SAL*1.5 Group by o.SAL, o.ENAME, e.SAL, e.ENAME ORDER BY e.ENAME;
