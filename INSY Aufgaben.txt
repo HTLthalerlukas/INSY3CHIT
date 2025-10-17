@@ -142,3 +142,5 @@
 69) create view EMP10 as select * from emps where dept_id = 10;
 create view EMP20 as select * from emps where dept_id = 20;
 create view EMP30 as select * from emps where dept_id = 30;
+
+70) create view FIL20 as select ENAME, id, JOB from emps where dept_id = 20;
