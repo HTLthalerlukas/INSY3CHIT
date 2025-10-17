@@ -146,3 +146,5 @@ create view EMP30 as select * from emps where dept_id = 30;
 70) create view FIL20 as select ENAME, id, JOB from emps where dept_id = 20;
 
 71) create view Ex71 as select dept_id, MAX(SAL), MIN(SAL), AVG(SAL) from emps GROUP BY dept_id;
+
+72) create view Ex72 as select e.ENAME as Name, e.JOB as Job, e.SAL as Gehalt, a.Durchschnitt as Durchschnitt_in_Filiale, ((e.SAL - a.Durchschnitt)/a.Durchschnitt*100) as Prozent, ABS(e.SAL - a.Durchschnitt) as Differenz from emps e join Ex71 a on e.dept_id = a.Filiale order by Prozent;
