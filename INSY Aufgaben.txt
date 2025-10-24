@@ -125,15 +125,15 @@
 
 61) select DEPTNO from depts where DEPTNO IN (select dept_id from emps);
 
-62) select DEPT_ID, ENAME, SAL from emps where SAL > (select AVG(SAL) from emps) ORDER BY dept_id;
+62) select DEPT_ID, ENAME, SAL from emps where SAL > (select AVG(SAL) from emps) ORDER BY dept_id; //fixen
 
-63) select DNAME, DEPTNO from depts where 4 <= (select count(dept_id) from emps where dept_id = DEPTNO);
+63) select DNAME, DEPTNO from depts where 4 <= (select count(dept_id) from emps where dept_id = DEPTNO); //fixen
 
 64) select e.ENAME from emps e join (select dept_id, AVG(SAL) as AVGSAL from emps group by dept_id) a on e.dept_id=a.dept_id where e.SAL*1.1>=a.AVGSAL or e.SAL*0.9<=a.AVGSAL;
 
 65) SELECT e.ENAME, d.DNAME FROM emps e JOIN depts d ON e.dept_id = d.DEPTNO WHERE d.LOC = 'CHICAGO';
 
-66) select e.JOB, e.dept_id from emps e where SAL = (select MAX(d.SAL) from emps d where d.JOB = e.JOB);
+66) select e.JOB, e.dept_id from emps e where SAL = (select MAX(d.SAL) from emps d where d.JOB = e.JOB); //corelated subquerry
 
 67) select distinct e.JOB, e.dept_id from emps e where SAL = (select MAX(d.SAL) from emps d where d.JOB = e.JOB);
 
@@ -150,3 +150,6 @@ create view EMP30 as select * from emps where dept_id = 30;
 72) create view Ex72 as select e.ENAME as Name, e.JOB as Job, e.SAL as Gehalt, a.Durchschnitt as Durchschnitt_in_Filiale, ((e.SAL - a.Durchschnitt)/a.Durchschnitt*100) as Prozent, ABS(e.SAL - a.Durchschnitt) as Differenz from emps e join Ex71 a on e.dept_id = a.Filiale order by Prozent;
 
 73) create view Zahlung as select e.id as Personalnummer, e.JOB as Beruf, e.ENAME as Name, e.SAL as Monatsgehalt, e.SAL*12 as Jahresgehalt, d.DNAME as Filialienbezeichnung, d.LOC as Adresse from emps e join depts d on e.dept_id = d.DEPTNO order by ENAME;
+
+74) select SUM(Jahresgehalt), Adresse from Zahlung group by Adresse;
+
