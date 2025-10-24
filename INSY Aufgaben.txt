@@ -153,4 +153,4 @@ create view EMP30 as select * from emps where dept_id = 30;
 
 74) select SUM(Jahresgehalt), Adresse from Zahlung group by Adresse;
 
-75) create view EMP as select * from emps join (select * from depts) d;
+75) create view EMP as select * from emps join depts on dept_id = DEPTNO;
