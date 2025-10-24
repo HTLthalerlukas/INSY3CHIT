@@ -121,19 +121,19 @@
 
 59) select ENAME, JOB from emps where  JOB IN (select JOB from emps where dept_id = (select DEPTNO from depts where DNAME = 'SALES'));
 
-60) select e.* from emps e where HIREDATE = (select MAX(HIREDATE) from emps where dept_id = e.dept_id) ORDER BY dept_id;
+60) select e.ENAME, e.dept_id, e.HIREDATE from emps e natural join (select dept_id, max(Hiredate) mhd from emps group by dept_id) md where HIREDATE=mhd;;
 
 61) select DEPTNO from depts where DEPTNO IN (select dept_id from emps);
 
-62) select DEPT_ID, ENAME, SAL from emps where SAL > (select AVG(SAL) from emps) ORDER BY dept_id; //fixen
+62) select DEPT_ID, ENAME, SAL from emps where SAL > (select AVG(SAL) from emps) ORDER BY dept_id;
 
-63) select DNAME, DEPTNO from depts where 4 <= (select count(dept_id) from emps where dept_id = DEPTNO); //fixen
+63) select e.DNAME, e.DEPTNO from depts e join (select count(dept_id) anz, dept_id from emps group by dept_id) d on d.dept_id=e.DEPTNO where anz>=4;;
 
 64) select e.ENAME from emps e join (select dept_id, AVG(SAL) as AVGSAL from emps group by dept_id) a on e.dept_id=a.dept_id where e.SAL*1.1>=a.AVGSAL or e.SAL*0.9<=a.AVGSAL;
 
 65) SELECT e.ENAME, d.DNAME FROM emps e JOIN depts d ON e.dept_id = d.DEPTNO WHERE d.LOC = 'CHICAGO';
 
-66) select e.JOB, e.dept_id from emps e where SAL = (select MAX(d.SAL) from emps d where d.JOB = e.JOB); //corelated subquerry
+66) select e.JOB, e.SAL, e.dept_id from emps e join (select JOB, MAX(SAL)max from emps group by JOB)e2 on e.JOB=e2.JOB where e.SAL = e2.max;;
 
 67) select distinct e.JOB, e.dept_id from emps e where SAL = (select MAX(d.SAL) from emps d where d.JOB = e.JOB);
 
