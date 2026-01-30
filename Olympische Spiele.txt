@@ -1,0 +1,140 @@
+create table helfer
+(
+    Personalnummer int         not null
+        primary key,
+    Name           varchar(45) not null
+);
+
+create table nationen
+(
+    Nation            varchar(45) not null
+        primary key,
+    Mannschaftsleiter varchar(45) not null,
+    Telefonnummer     varchar(45) not null
+);
+
+create table schiedsrichter
+(
+    Personalnummer  int         not null
+        primary key,
+    Name            varchar(45) not null,
+    nationen_Nation varchar(45) not null,
+    constraint fk_schiedsrichter_nationen1
+        foreign key (nationen_Nation) references nationen (Nation)
+);
+
+create index fk_schiedsrichter_nationen1_idx
+    on schiedsrichter (nationen_Nation);
+
+create table sportler
+(
+    Startnummer     int         not null
+        primary key,
+    Name            varchar(45) not null,
+    nationen_Nation varchar(45) not null,
+    constraint fk_sportler_nationen1
+        foreign key (nationen_Nation) references nationen (Nation)
+);
+
+create index fk_sportler_nationen1_idx
+    on sportler (nationen_Nation);
+
+create table wettkämpfe
+(
+    Wettkampfid                   int         not null
+        primary key,
+    Sportart                      varchar(45) not null,
+    Termin                        varchar(45) not null,
+    Sportstätte                   varchar(45) not null,
+    schiedsrichter_Personalnummer int         not null,
+    constraint fk_wettkämpfe_schiedsrichter1
+        foreign key (schiedsrichter_Personalnummer) references schiedsrichter (Personalnummer)
+);
+
+create index fk_wettkämpfe_schiedsrichter1_idx
+    on wettkämpfe (schiedsrichter_Personalnummer);
+
+create table wettkämpfe_has_helfer
+(
+    wettkämpfe_Wettkampfid int not null,
+    helfer_Personalnummer  int not null,
+    primary key (wettkämpfe_Wettkampfid, helfer_Personalnummer),
+    constraint fk_wettkämpfe_has_helfer_helfer1
+        foreign key (helfer_Personalnummer) references helfer (Personalnummer),
+    constraint fk_wettkämpfe_has_helfer_wettkämpfe1
+        foreign key (wettkämpfe_Wettkampfid) references wettkämpfe (Wettkampfid)
+);
+
+create index fk_wettkämpfe_has_helfer_helfer1_idx
+    on wettkämpfe_has_helfer (helfer_Personalnummer);
+
+create index fk_wettkämpfe_has_helfer_wettkämpfe1_idx
+    on wettkämpfe_has_helfer (wettkämpfe_Wettkampfid);
+
+create table wettkämpfe_has_sportler
+(
+    wettkämpfe_Wettkampfid int not null,
+    sportler_Startnummer   int not null,
+    primary key (wettkämpfe_Wettkampfid, sportler_Startnummer),
+    constraint fk_wettkämpfe_has_sportler_sportler1
+        foreign key (sportler_Startnummer) references sportler (Startnummer),
+    constraint fk_wettkämpfe_has_sportler_wettkämpfe
+        foreign key (wettkämpfe_Wettkampfid) references wettkämpfe (Wettkampfid)
+);
+
+create index fk_wettkämpfe_has_sportler_sportler1_idx
+    on wettkämpfe_has_sportler (sportler_Startnummer);
+
+create index fk_wettkämpfe_has_sportler_wettkämpfe_idx
+    on wettkämpfe_has_sportler (wettkämpfe_Wettkampfid);
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO `International Olympic Committee`.helfer (Personalnummer, Name) VALUES (1, 'helfer1');
+INSERT INTO `International Olympic Committee`.helfer (Personalnummer, Name) VALUES (2, 'helfer2');
+INSERT INTO `International Olympic Committee`.helfer (Personalnummer, Name) VALUES (3, 'helfer3');
+INSERT INTO `International Olympic Committee`.helfer (Personalnummer, Name) VALUES (4, 'helfer4');
+INSERT INTO `International Olympic Committee`.helfer (Personalnummer, Name) VALUES (5, 'helfer5');
+
+INSERT INTO `International Olympic Committee`.nationen (Nation, Mannschaftsleiter, Telefonnummer) VALUES ('Deutschland', 'Deutscher-leiter', '123456789');
+INSERT INTO `International Olympic Committee`.nationen (Nation, Mannschaftsleiter, Telefonnummer) VALUES ('England', 'England-leiter', '987654321');
+INSERT INTO `International Olympic Committee`.nationen (Nation, Mannschaftsleiter, Telefonnummer) VALUES ('Tschechien', 'Tschechischer-leiter', '192837465');
+
+INSERT INTO `International Olympic Committee`.schiedsrichter (Personalnummer, Name, nationen_Nation) VALUES (1, 'schiri1', 'Deutschland');
+INSERT INTO `International Olympic Committee`.schiedsrichter (Personalnummer, Name, nationen_Nation) VALUES (2, 'schiri2', 'England');
+INSERT INTO `International Olympic Committee`.schiedsrichter (Personalnummer, Name, nationen_Nation) VALUES (3, 'schiri3', 'Tschechien');
+
+INSERT INTO `International Olympic Committee`.sportler (Startnummer, Name, nationen_Nation) VALUES (1, 'sportler1', 'Deutschland');
+INSERT INTO `International Olympic Committee`.sportler (Startnummer, Name, nationen_Nation) VALUES (2, 'sportler2', 'England');
+INSERT INTO `International Olympic Committee`.sportler (Startnummer, Name, nationen_Nation) VALUES (3, 'sportler3', 'Tschechien');
+INSERT INTO `International Olympic Committee`.sportler (Startnummer, Name, nationen_Nation) VALUES (4, 'sportler4', 'Deutschland');
+INSERT INTO `International Olympic Committee`.sportler (Startnummer, Name, nationen_Nation) VALUES (5, 'sportler5', 'England');
+INSERT INTO `International Olympic Committee`.sportler (Startnummer, Name, nationen_Nation) VALUES (6, 'sportler6', 'Tschechien');
+
+INSERT INTO `International Olympic Committee`.wettkämpfe (Wettkampfid, Sportart, Termin, Sportstätte, schiedsrichter_Personalnummer) VALUES (1, 'Fußball', '12.3.2021', 'Bayern', 1);
+INSERT INTO `International Olympic Committee`.wettkämpfe (Wettkampfid, Sportart, Termin, Sportstätte, schiedsrichter_Personalnummer) VALUES (2, 'Volleyball', '12.3.2022', 'Dortmund', 2);
+INSERT INTO `International Olympic Committee`.wettkämpfe (Wettkampfid, Sportart, Termin, Sportstätte, schiedsrichter_Personalnummer) VALUES (3, 'Tischtennis', '12.3.2023', 'Rom', 3);
+INSERT INTO `International Olympic Committee`.wettkämpfe (Wettkampfid, Sportart, Termin, Sportstätte, schiedsrichter_Personalnummer) VALUES (4, 'Basketball', '12.3.2024', 'Köln', 1);
+INSERT INTO `International Olympic Committee`.wettkämpfe (Wettkampfid, Sportart, Termin, Sportstätte, schiedsrichter_Personalnummer) VALUES (5, 'Völkerball', '12.3.2025', 'Wien', 3);
+
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_helfer (wettkämpfe_Wettkampfid, helfer_Personalnummer) VALUES (1, 1);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_helfer (wettkämpfe_Wettkampfid, helfer_Personalnummer) VALUES (2, 2);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_helfer (wettkämpfe_Wettkampfid, helfer_Personalnummer) VALUES (3, 3);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_helfer (wettkämpfe_Wettkampfid, helfer_Personalnummer) VALUES (4, 4);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_helfer (wettkämpfe_Wettkampfid, helfer_Personalnummer) VALUES (5, 5);
+
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_sportler (wettkämpfe_Wettkampfid, sportler_Startnummer) VALUES (1, 1);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_sportler (wettkämpfe_Wettkampfid, sportler_Startnummer) VALUES (5, 2);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_sportler (wettkämpfe_Wettkampfid, sportler_Startnummer) VALUES (3, 3);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_sportler (wettkämpfe_Wettkampfid, sportler_Startnummer) VALUES (2, 5);
+INSERT INTO `International Olympic Committee`.wettkämpfe_has_sportler (wettkämpfe_Wettkampfid, sportler_Startnummer) VALUES (4, 6);
