@@ -1,0 +1,16 @@
+//1
+    db.depts.find();
+//2
+    db.emps.find({dept_id:10});
+//3
+    db.emps.find({}, {ENAME:1, JOB:1, SAL:1});
+//4
+    db.emps.find({dept_id:{$ne:10}});
+//5
+    db.emps.find({$expr:{$gt:["$COMM", "$SAL"]}})
+//6
+    db.emps.find({"HIREDATE":new Date("1981-12-03")})
+//7
+    db.emps.find({$expr :{$or:[{$lte:["$SAL", 1250]},  {$gte:["$SAL", 1600]}]}})
+//8
+    db.emps.find({$expr :{$and:[{$ne:["$JOB", "PRESIDENT"]}, {$ne:["$JOB", "MANAGER"]}]}})
