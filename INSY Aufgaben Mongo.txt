@@ -14,3 +14,19 @@
     db.emps.find({$expr :{$or:[{$lte:["$SAL", 1250]},  {$gte:["$SAL", 1600]}]}})
 //8
     db.emps.find({$expr :{$and:[{$ne:["$JOB", "PRESIDENT"]}, {$ne:["$JOB", "MANAGER"]}]}})
+//9
+    db.emps.find({ ENAME: { $regex: /^..A/, $options: 'i' }})
+//10
+    db.emps.find({COMM :{$ne:null}}, {ENAME:1, JOB:1, id:1})
+//11
+    db.emps.find().sort({COMM:1})
+//12
+    db.emps.find({$expr :{$and:[{$ne:["$JOB", "PRESIDENT"]}, {$ne:["$JOB", "MANAGER"]}]}}).sort({dept_id:1, HIREDATE:-1})
+//13
+    db.emps.find({ENAME: {$regex: /^....../, $options: "i" }})
+//14
+    db.emps.find({dept_id:30}, {MitarbeiterUndTätigkeit:{$concat:["$ENAME", "-", "$JOB"]}})
+//15 taktisch ausgelassen
+
+//16
+    db.emps.find({}, {MONTHLY: "$SAL", DAILY:{$divide: ["$SAL", 22]}, HOURLY:{$divide: ["$SAL", 176]}})
