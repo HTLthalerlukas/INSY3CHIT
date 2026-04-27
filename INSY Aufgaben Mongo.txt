@@ -1,3 +1,4 @@
+    // Abfragen
 //1
     db.depts.find();
 //2
@@ -27,6 +28,140 @@
 //14
     db.emps.find({dept_id:30}, {MitarbeiterUndTätigkeit:{$concat:["$ENAME", "-", "$JOB"]}})
 //15 taktisch ausgelassen
-
+    db.emps.find({}, {SAL:1, COMM:1})
+    db.emps.find({}, {$expr:{$ifNull:["$COMM", "0"]}})
 //16
     db.emps.find({}, {MONTHLY: "$SAL", DAILY:{$divide: ["$SAL", 22]}, HOURLY:{$divide: ["$SAL", 176]}})
+//17
+    db.emps.aggregate([{$group: {_id: null, Gesamtbetrag:{$sum:"$SAL" }}},{$project:{_id: 0,Gesamtbetrag: 1}}]);
+//18
+    db.emps.aggregate([{$group:{_id:null, AvgComm:{$avg:{$ifNull:["$COMM", 250]}}}}, {$project:{_id: 0, AvgComm: 1}}])
+//19
+    db.emps.aggregate([
+  {
+    $match: { dept_id: 30 }
+  },
+  {
+    $group: {
+      _id: null,
+      anzahl_Gehalt: {
+        $sum: { $cond: [{ $gt: ["$SAL", null] }, 1, 0] }
+      },
+      anzahl_Provision: {
+        $sum: { $cond: [{ $gt: ["$COMM", null] }, 1, 0] }
+      }
+    }
+  }
+])
+//20
+    db.emps.distinct("JOB").length
+//21
+    db.emps.distinct("parent_id")
+    db.emps.distinct("parent_id").length
+//22
+    db.emps.aggregate([{$match:{dept_id:10}}, {$group:{_id:null, Salary:{$sum:"$SAL"}, Commision:{$sum:"$COMM"}, CommisionAnzahl:{$count:{}}, AverageSal:{$avg:"$SAL"}, AverageComm:{$avg:"$COMM"}}}])
+//23
+    db.emps.aggregate([
+      {
+        $match: {
+          JOB: { $nin: ["MANAGER", "PRESIDENT"] }
+        }
+      },
+      {
+        $group: {
+          _id: "$JOB"
+        }
+      },
+      {
+        $count: "uniqueJobs"
+      }
+    ])
+//24
+    db.emps.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalCount: { $sum: 1 },
+          uniqueDepts: { $addToSet: "$dept_id" }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          avgEmpsPerDept: {
+            $divide: [ "$totalCount", { $size: "$uniqueDepts" } ]
+          }
+        }
+      }
+    ])
+//25
+        db.emps.aggregate([
+      {
+        $match: {
+          JOB: { $in: ["MANAGER", "PRESIDENT"] }
+        }
+      }
+    ])
+//26
+        db.emps.aggregate([
+      {
+        $match: {
+          $expr:{
+              $gt:["$COMM", {$divide:["$SAL", 4]}]
+          }
+        }
+      },
+      {
+        $project: {
+            _id: 0,
+            ENAME: 1,
+            JOB: 1,
+            COMM: 1,
+            //SAL:1
+        }
+      }
+    ])
+//27
+    db.emps.aggregate([
+      {
+        $group: {
+            _id:null,
+            leastPaid: { $min:{$add:["$SAL", {$ifNull:["$COMM", 0]}]} }
+        }
+      }
+    ])
+//28
+    db.emps.aggregate([
+      {
+        $group: {
+            _id:null,
+            minHiredate: { $min:"$HIREDATE"}
+        }
+      }
+    ])
+//29
+    db.emps.aggregate([
+      {
+        $group: {
+          _id: {
+            dept_id: "$dept_id",
+            JOB: "$JOB"
+          },
+          anzahl_personen: { $sum: 1 }
+        }
+      },
+      {
+        $project: {
+          _id: 0,
+          dept_id: "$_id.dept_id",
+          JOB: "$_id.JOB",
+          anzahl_personen: 1
+        }
+      },
+      {
+        $sort: {
+          dept_id: 1,
+          JOB: 1
+        }
+      }
+    ])
