@@ -1,41 +1,76 @@
-    // Abfragen
 //1
     db.depts.find();
+
+
 //2
     db.emps.find({dept_id:10});
+
+
 //3
     db.emps.find({}, {ENAME:1, JOB:1, SAL:1});
+
+
 //4
     db.emps.find({dept_id:{$ne:10}});
+
+
 //5
     db.emps.find({$expr:{$gt:["$COMM", "$SAL"]}})
+
+
 //6
     db.emps.find({"HIREDATE":new Date("1981-12-03")})
+
+
 //7
     db.emps.find({$expr :{$or:[{$lte:["$SAL", 1250]},  {$gte:["$SAL", 1600]}]}})
+
+
 //8
     db.emps.find({$expr :{$and:[{$ne:["$JOB", "PRESIDENT"]}, {$ne:["$JOB", "MANAGER"]}]}})
+
+
 //9
     db.emps.find({ ENAME: { $regex: /^..A/, $options: 'i' }})
+
+
 //10
     db.emps.find({COMM :{$ne:null}}, {ENAME:1, JOB:1, id:1})
+
+
 //11
     db.emps.find().sort({COMM:1})
+
+
 //12
     db.emps.find({$expr :{$and:[{$ne:["$JOB", "PRESIDENT"]}, {$ne:["$JOB", "MANAGER"]}]}}).sort({dept_id:1, HIREDATE:-1})
+
+
 //13
     db.emps.find({ENAME: {$regex: /^....../, $options: "i" }})
+
+
 //14
     db.emps.find({dept_id:30}, {MitarbeiterUndTätigkeit:{$concat:["$ENAME", "-", "$JOB"]}})
+
+
 //15 taktisch ausgelassen
     db.emps.find({}, {SAL:1, COMM:1})
     db.emps.find({}, {$expr:{$ifNull:["$COMM", "0"]}})
+
+
 //16
     db.emps.find({}, {MONTHLY: "$SAL", DAILY:{$divide: ["$SAL", 22]}, HOURLY:{$divide: ["$SAL", 176]}})
+
+
 //17
     db.emps.aggregate([{$group: {_id: null, Gesamtbetrag:{$sum:"$SAL" }}},{$project:{_id: 0,Gesamtbetrag: 1}}]);
+
+
 //18
     db.emps.aggregate([{$group:{_id:null, AvgComm:{$avg:{$ifNull:["$COMM", 250]}}}}, {$project:{_id: 0, AvgComm: 1}}])
+
+
 //19
     db.emps.aggregate([
   {
@@ -53,13 +88,21 @@
     }
   }
 ])
+
+
 //20
     db.emps.distinct("JOB").length
+
+
 //21
     db.emps.distinct("parent_id")
     db.emps.distinct("parent_id").length
+
+
 //22
     db.emps.aggregate([{$match:{dept_id:10}}, {$group:{_id:null, Salary:{$sum:"$SAL"}, Commision:{$sum:"$COMM"}, CommisionAnzahl:{$count:{}}, AverageSal:{$avg:"$SAL"}, AverageComm:{$avg:"$COMM"}}}])
+
+
 //23
     db.emps.aggregate([
       {
@@ -76,6 +119,8 @@
         $count: "uniqueJobs"
       }
     ])
+
+
 //24
     db.emps.aggregate([
       {
@@ -94,6 +139,8 @@
         }
       }
     ])
+
+
 //25
         db.emps.aggregate([
       {
@@ -102,6 +149,8 @@
         }
       }
     ])
+
+
 //26
         db.emps.aggregate([
       {
@@ -121,6 +170,8 @@
         }
       }
     ])
+
+
 //27
     db.emps.aggregate([
       {
@@ -130,6 +181,8 @@
         }
       }
     ])
+
+
 //28
     db.emps.aggregate([
       {
@@ -139,6 +192,8 @@
         }
       }
     ])
+
+
 //29
     db.emps.aggregate([
       {
